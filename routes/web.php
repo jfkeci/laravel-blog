@@ -27,5 +27,6 @@ Route::get('/users/{name}', function ($name) {
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Auth::routes();
+Route::resource('posts', 'App\Http\Controllers\PostsController');
+
 
