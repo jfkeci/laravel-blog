@@ -2,14 +2,14 @@
 
 @section('content')
 
-<a class="btn btn-default" href="/posts">Go back</a>
+    <a class="btn btn-default" href="/posts">Go back</a>
 
-<br>
-<br>
+    <br>
+    <br>
 
-<h1>{{$post->title}}</h1>
-<p>{{$post->body}}</p>
-<hr>
-<small>Written on: {{$post->created_at}}</small>
+    <h1>{{ $post->title }}</h1>
+    <p>{{ $post->body }}</p>
+    <hr>
+    <small>Written on: {{ $post->created_at }}</small>
 
 @endsection
