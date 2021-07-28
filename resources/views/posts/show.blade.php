@@ -6,13 +6,15 @@
 
     <br>
     <br>
-
-    <h1>{{ $post->title }}</h1>
-    <p>{{ $post->body }}</p>
+    <div class="col-md-12">
+        <img style="width:100%" src="/storage/cover_images/{{ $post->cover_image }}"
+            alt="/storage/cover_images/noimage.jpeg" class="">
+        <h1>{{ $post->title }}</h1>
+        <p>{{ $post->body }}</p>
+        <hr>
+        <small>Written on: {{ $post->created_at }}</small>
+    </div>
     <hr>
-    <small>Written on: {{ $post->created_at }}</small>
-    <hr>
-
     @if (!Auth::guest())
         @if (Auth::user()->id == $post->user_id)
             <a href="/posts/{{ $post->id }}/edit" class="btn btn-default"> Edit </a>
