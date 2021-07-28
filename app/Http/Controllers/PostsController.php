@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\User;
 use DB;
 
 class PostsController extends Controller
@@ -18,6 +19,7 @@ class PostsController extends Controller
         /* $posts = Post::all(); */
         $posts = Post::orderBy('created_at', 'desc')->get();
         /* $posts = DB::select('SELECT * FROM posts ORDER BY created_at ASC'); */
+        
         return view('posts.index')->with('posts', $posts);
     }
 
@@ -47,6 +49,7 @@ class PostsController extends Controller
         $post = new Post;
         $post->title = $request->input('title');
         $post->body = $request->input('body');
+        $post->user_id = auth()->user()->id;
         $post->save();
 
         return redirect('/posts')->with('success', 'Post created');
