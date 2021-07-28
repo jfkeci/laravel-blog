@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Post;
 use App\Models\User;
 use DB;
@@ -168,6 +169,10 @@ class PostsController extends Controller
 
         if(auth()->user()->id !== $post->user_id){
             return redirect('/posts')->with('error', 'Unauthorised page.');
+        }
+
+        if($post->cover_image !== 'noimage.jpeg'){
+            Storage::delete('public/cover_images/'.$post->cover_image);
         }
 
         $post->delete();
