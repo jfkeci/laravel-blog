@@ -23,7 +23,7 @@ Route::get('/users/{name}', function ($name) {
     return "<h1>Hello world $name </h1>";
 }); */
 
-/* Auth::routes(); */
+Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
