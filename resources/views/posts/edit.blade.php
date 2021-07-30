@@ -13,7 +13,7 @@
         {{ Form::textarea('body', $post->body, ['class' => 'form-control', 'placeholder' => 'Content']) }}
     </div>
     <div class="form-group">
-        {{Form::file('cover_image')}}
+        {{ Form::file('cover_image') }}
     </div>
 
     {{ Form::hidden('_method', 'PUT') }}

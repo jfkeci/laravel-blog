@@ -26,8 +26,6 @@
                 @endforeach
             </ul>
         </div>
-    @else
-
     @endif
 
 

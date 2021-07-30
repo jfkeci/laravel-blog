@@ -31,7 +31,7 @@ class PostsController extends Controller
         /* $posts = Post::all(); */
         $posts = Post::orderBy('created_at', 'desc')->get();
         /* $posts = DB::select('SELECT * FROM posts ORDER BY created_at ASC'); */
-        
+
         return view('posts.index')->with('posts', $posts);
     }
 
@@ -60,7 +60,7 @@ class PostsController extends Controller
         ]);
 
         //handle the file upload
-        if($request->hasFile('cover_image')){
+        if ($request->hasFile('cover_image')) {
             //get filename with extension
             $filenameWithExt = $request->file('cover_image')->getClientOriginalName();
             //get just filename
@@ -71,7 +71,7 @@ class PostsController extends Controller
             $filenameToStore = $filename . '_' . time() . $extension;
             //upload image
             $path = $request->file('cover_image')->storeAs('public/cover_images', $filenameToStore);
-        }else{
+        } else {
             $filenameToStore = 'noimage.jpeg';
         }
 
@@ -107,7 +107,7 @@ class PostsController extends Controller
     {
         $post = Post::find($id);
 
-        if(auth()->user()->id !== $post->user_id){
+        if (auth()->user()->id !== $post->user_id) {
             return redirect('/posts')->with('error', 'Unauthorised page.');
         }
 
@@ -130,7 +130,7 @@ class PostsController extends Controller
         ]);
 
         //handle the file upload
-        if($request->hasFile('cover_image')){
+        if ($request->hasFile('cover_image')) {
             //get filename with extension
             $filenameWithExt = $request->file('cover_image')->getClientOriginalName();
             //get just filename
@@ -144,11 +144,11 @@ class PostsController extends Controller
         }
 
         $post = Post::find($id);
-        
+
         $post->title = $request->input('title');
         $post->body = $request->input('body');
 
-        if($request->hasFile('cover_image')){
+        if ($request->hasFile('cover_image')) {
             $post->cover_image = $filenameToStore;
         }
 
@@ -167,12 +167,12 @@ class PostsController extends Controller
     {
         $post = Post::find($id);
 
-        if(auth()->user()->id !== $post->user_id){
+        if (auth()->user()->id !== $post->user_id) {
             return redirect('/posts')->with('error', 'Unauthorised page.');
         }
 
-        if($post->cover_image !== 'noimage.jpeg'){
-            Storage::delete('public/cover_images/'.$post->cover_image);
+        if ($post->cover_image !== 'noimage.jpeg') {
+            Storage::delete('public/cover_images/' . $post->cover_image);
         }
 
         $post->delete();

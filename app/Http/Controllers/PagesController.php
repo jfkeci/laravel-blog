@@ -6,15 +6,18 @@ use Illuminate\Http\Request;
 
 class PagesController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $title = "welcomme to my blog";
         return view('pages.index', compact('title'));
     }
-    public function about(){
+    public function about()
+    {
         $title = "welcomme to about";
         return view('pages.about')->with('title', $title);
     }
-    public function services(){
+    public function services()
+    {
         $data = array(
             'title' => 'Services',
             'services' => [
